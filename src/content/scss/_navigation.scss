@@ -1,0 +1,86 @@
+nav {
+  padding: 15px 20px;
+
+  .logo {
+    height: 50px;
+    cursor: pointer;
+    margin-right: auto;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 20px;
+
+    li {
+      font-size: 150%;
+      display: inline-block;
+      padding: 10px;
+
+      a {
+        color: $color-dark;
+        text-decoration: none;
+
+        &:hover {
+          color: $color-cream-white;
+        }
+      }
+    }
+
+    .current {
+      color: $color-dark-green;
+    }
+  }
+
+  @media (max-width: 890px) {
+    padding: 0;
+
+    ul {
+      display: none;
+
+      &.open {
+        display: flex;
+        flex-direction: column;
+        background-color: $color-green;
+        width: 100vw;
+        height: 100vh;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 20%;
+        z-index: 99;
+      }
+    }
+  }
+}
+
+.connect-wallet-button {
+  font-size: 1rem;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: $color-dark;
+  color: white;
+  cursor: pointer;
+  width: 200px;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: background-color 0.4s ease, transform 0.4s ease;
+
+
+  &:hover {
+    background-color: $color-dark-green;
+  }
+
+  .nav-wallet-button {
+    position: relative;
+  }
+}
+
+.connect-wallet-button:active {
+  background-color: $color-green;
+  transform: scale(1.1);
+}

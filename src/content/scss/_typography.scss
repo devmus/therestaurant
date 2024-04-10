@@ -1,0 +1,22 @@
+body {
+  color: $color-dark;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font: 4rem 'Rubik Doodle Shadow', sans-serif;
+  color: $color-cream-white;
+}
+
+h2 {
+  font: 3rem "Montserrat", sans-serif;
+  color: $color-dark;
+}
+
+.rubik-doodle {
+&shadow-regular {
+  font-family: "Rubik Doodle Shadow", system-ui;
+  font-weight: 400;
+  font-style: normal;
+}
+}
