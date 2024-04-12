@@ -6,11 +6,11 @@ export const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer-links">
-        <NavLink to={'/'}>Home</NavLink>
-        <NavLink to={'/booking'}>Booking</NavLink>
-        <NavLink to={'/admin'}>Admin</NavLink>
-        <NavLink to={'/contact'}>Contact</NavLink>
-        <NavLink to={'/datakeep'}>Privacy Policy</NavLink>
+        <NavLink to={'/therestaurant/'}>Home</NavLink>
+        <NavLink to={'/therestaurant/booking'}>Booking</NavLink>
+        <NavLink to={'/therestaurant/admin'}>Admin</NavLink>
+        <NavLink to={'/therestaurant/contact'}>Contact</NavLink>
+        <NavLink to={'/therestaurant/datakeep'}>Privacy Policy</NavLink>
       </div>
       <div className="copyright">
         <p>© 2024 Book Your Table.</p>

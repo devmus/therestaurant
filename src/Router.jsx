@@ -10,16 +10,16 @@ import { DataKeep } from "./pages/DataKeep";
 
 export const router = createBrowserRouter([
   {
-    path: "/",
+    path: "/therestaurant/",
     element: <Layout />,
     errorElement: <NotFound />,
     children: [
-      { path: "/", index: true, element: <Home /> },
-      { path: "/thankyou", element: <Thankyou /> },
-      { path: "booking", element: <Booking /> },
-      { path: "admin", element: <Admin /> },
-      { path: "contact", element: <Contact /> },
-      { path: "datakeep", element: <DataKeep /> },
+      { path: "/therestaurant/", index: true, element: <Home /> },
+      { path: "/therestaurant/thankyou", element: <Thankyou /> },
+      { path: "/therestaurant/booking", element: <Booking /> },
+      { path: "/therestaurant/admin", element: <Admin /> },
+      { path: "/therestaurant/contact", element: <Contact /> },
+      { path: "/therestaurant/datakeep", element: <DataKeep /> },
     ],
   },
 ]);
