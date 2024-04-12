@@ -41,7 +41,7 @@ export const Thankyou = () => {
       {currentId >0 &&
       <div>Your booking ID: {allBookings[currentId][0].toString()}</div>
       }
-      <Link to="/contact">Contact us</Link>
+      <Link to="/therestaurant/contact">Contact us</Link>
     </div>
   )
 }

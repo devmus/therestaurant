@@ -34,7 +34,7 @@ export const Navbar = () => {
         </div>
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
           <li>
-            <NavLink to={"/"}>
+            <NavLink to={"/therestaurant/"}>
               <img
                 src={logo}
                 alt="Logo"
@@ -44,22 +44,22 @@ export const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/"} onClick={toggleMenu}>
+            <NavLink to={"/therestaurant/"} onClick={toggleMenu}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/booking"} onClick={toggleMenu}>
+            <NavLink to={"/therestaurant/booking"} onClick={toggleMenu}>
               Booking
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/admin"} onClick={toggleMenu}>
+            <NavLink to={"/therestaurant/admin"} onClick={toggleMenu}>
               Admin
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/contact"} onClick={toggleMenu}>
+            <NavLink to={"/therestaurant/contact"} onClick={toggleMenu}>
               Contact
             </NavLink>
           </li>

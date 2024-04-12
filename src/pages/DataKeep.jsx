@@ -34,7 +34,7 @@ export const DataKeep = () => {
           <br /> <br />
           By using this website, you consent to the terms outlined in this Privacy Policy. If
           you have any questions or concerns regarding our Privacy Policy,
-          please <Link to="/contact">contact us</Link>.
+          please <Link to="/therestaurant/contact">contact us</Link>.
           <br /> <br />
           This Privacy Policy was last updated on 12 April 2024.
         </p>
