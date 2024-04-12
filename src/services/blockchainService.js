@@ -1,5 +1,5 @@
-import { ethers } from "ethers";
-import { abi } from "./config.js";
+import { ethers } from 'ethers';
+import { abi } from './config.js';
 
 /**********************************************************************************/
 //                     Blockchain Initialization Functions                        //
@@ -8,18 +8,18 @@ import { abi } from "./config.js";
 export const requestAccount = async () => {
   try {
     const result = await window.ethereum.request({
-      method: "eth_requestAccounts",
+      method: 'eth_requestAccounts',
     });
     return result;
   } catch (error) {
-    console.error("Error requesting account:", error);
+    console.error('Error requesting account:', error);
   }
 };
 
 export const walletChecker = (errorMsg) => {
   if (!window.ethereum) {
     errorMsg =
-      "Ethers.js: Web3 provider not found. Please install a wallet with Web3 support.";
+      'Ethers.js: Web3 provider not found. Please install a wallet with Web3 support.';
     console.error(errorMsg);
   } else {
     window.provider = new ethers.BrowserProvider(window.ethereum);
@@ -27,21 +27,21 @@ export const walletChecker = (errorMsg) => {
 };
 
 export const loadReadContract = async (contractAddress) => {
-  if (contractAddress === "") {
+  if (contractAddress === '') {
     return;
   }
 
   const restaurantReadContract = new ethers.Contract(
     contractAddress,
     abi,
-    window.provider,
+    window.provider
   );
 
   return restaurantReadContract;
 };
 
 export const loadWriteContract = async (contractAddress) => {
-  if (contractAddress === "") {
+  if (contractAddress === '') {
     return;
   }
   const signer = await provider.getSigner();
@@ -49,7 +49,7 @@ export const loadWriteContract = async (contractAddress) => {
   const resturantWriteContract = new ethers.Contract(
     contractAddress,
     abi,
-    signer,
+    signer
   );
 
   return resturantWriteContract;
@@ -71,7 +71,7 @@ export const createRestaurant = async (restaurantName, writeContract) => {
   try {
     await writeContract.createRestaurant(restaurantName);
   } catch (error) {
-    console.error("Error in createRestaurant:", error);
+    console.error('Error in createRestaurant:', error);
     throw error;
   }
 };
@@ -105,11 +105,11 @@ export const createBooking = async (booking, writeContract) => {
       booking.name,
       booking.date,
       booking.time,
-      booking.restaurantId,
+      booking.restaurantId
     );
     await result.wait();
   } catch (error) {
-    console.error("Error creating booking", error);
+    console.error('Error creating booking', error);
   }
 };
 
@@ -119,7 +119,7 @@ export const editBooking = async (
   name,
   date,
   time,
-  writeContract,
+  writeContract
 ) => {
   try {
     const result = await writeContract.editBooking(
@@ -127,19 +127,19 @@ export const editBooking = async (
       numberOfGuests,
       name,
       date,
-      time,
+      time
     );
     await result.wait();
   } catch (error) {
-    console.error("Error editing booking:", error);
+    console.error('Error editing booking:', error);
     throw error;
   }
 };
 
-export const fetchAllBookings = async (readContract, restaurantId = "") => {
+export const fetchAllBookings = async (readContract, restaurantId = '') => {
   const bookings = [];
   if (!readContract) {
-    console.error("Read contract is not provided.");
+    console.error('Read contract is not provided.');
     return bookings;
   }
 
@@ -161,12 +161,12 @@ export const fetchAllBookings = async (readContract, restaurantId = "") => {
 export const removeBooking = async (bookingId, writeContract) => {
   try {
     if (!writeContract) {
-      throw new Error("Write contract not initialized");
+      throw new Error('Write contract not initialized');
     }
     const result = await writeContract.removeBooking(bookingId);
     await result.wait();
   } catch (error) {
-    console.error("Error removing booking:", error);
+    console.error('Error removing booking:', error);
     throw error;
   }
 };

@@ -320,11 +320,10 @@ export const abi = [
   },
 ];
 
-//const sepoliaAddress = "0xB369317d2d65a84397f71C7B7a548cc5294B5E9f";
-//const hardhatAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
 
-//export const contractAddress = sepoliaAddress;
+const hardhatAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3"; // Change here to your Contract address from hardhat
+
 export const CONTRACT_ADDRESSES = {
-  "0x7a69": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+  "0x7a69": hardhatAddress,
   "0xaa36a7": "0xB369317d2d65a84397f71C7B7a548cc5294B5E9f",
 };

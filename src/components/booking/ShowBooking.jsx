@@ -16,7 +16,7 @@ export const ShowBooking = ({ displayBookingConfirmation, loadingScreen, restaur
 
   return (
     <>
-    <div className="container-contact">
+    {/* <div className="container-contact"> */}
       {loadingScreen && <div>Loading...</div>}
       {displayBookingConfirmation && (
         <div className="container-contact">
@@ -29,7 +29,7 @@ export const ShowBooking = ({ displayBookingConfirmation, loadingScreen, restaur
           <button onClick={handleClick}>OK</button>
         </div>
       )}
-      </div>
+      {/* </div> */}
     </>
   );
 };

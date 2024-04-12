@@ -1,3 +1,5 @@
+@import 'colors';
+
 nav {
   padding: 15px 20px;
 
@@ -34,7 +36,7 @@ nav {
     }
   }
 
-  @media (max-width: 890px) {
+  @media (max-width: 1119px) {
     padding: 0;
 
     ul {
@@ -80,7 +82,65 @@ nav {
   }
 }
 
+.nav-wallet-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .nav-wallet-button {
+    margin-right: 20px;
+  }
+
+}
 .connect-wallet-button:active {
   background-color: $color-green;
   transform: scale(1.1);
 }
+
+.chainswitcher select {
+  font-size: 1rem;
+  background-color: $color-dark;
+  color: white;
+  border-radius: 4px;
+  padding: 11.5px;
+  cursor: pointer;
+  border: none;
+  width: 200px;
+  text-align: center;
+
+  &:hover {
+    background-color: $color-dark-green;
+  }
+
+  .chainswitcher select option:disabled {
+    color: $color-dark;
+  }
+
+}
+
+.nav-extra {
+  @media (max-width: 1240px) {
+    font-size: 0.8rem;
+
+    .connect-wallet-button,
+    .chainswitcher select {
+      width: 150px;
+    }
+  }
+
+  @media (max-width: 1119px) {
+    padding: 0;
+  
+      &.open {
+        display: flex;
+        flex-direction: column;
+        background-color: $color-green;
+        width: 100vw;
+        height: 100vh;
+        justify-content: flex-start;
+        align-items: center;
+        padding-top: 20%;
+        z-index: 99;
+      }
+    }
+  }

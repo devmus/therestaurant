@@ -48,16 +48,7 @@ export const Booking = () => {
 
   const handleSetBooking = (e) => {
     setBooking({ ...booking, [e.target.name]: e.target.value });
-  };
-
-  const returnBooking = () => {
-    setLoadingScreen("true");
-    setTimeout(() => {
-      setdisplayBookingConfirmation(booking);
-    }, 3000);
-  };
-
-  
+  }; 
 
   return (
     <>
@@ -73,10 +64,11 @@ export const Booking = () => {
           <Bookingform
             displayBookingForm={displayBookingForm}
             booking={booking}
-            returnBooking={returnBooking}
             handleSetBooking={handleSetBooking}
             restaurantList={restaurantList}
             displayBookingConfirmation={displayBookingConfirmation}
+            setdisplayBookingConfirmation={setdisplayBookingConfirmation}
+            setLoadingScreen={setLoadingScreen}
             loadingScreen={loadingScreen}
           />
         ) : (

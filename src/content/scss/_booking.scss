@@ -7,117 +7,124 @@
   justify-content: center;
   width: 100%;
   max-width: 1000px;
-  margin: 200px auto 0 auto;
+  margin: 200px auto 300px auto;
   padding: 20px;
   background-color: $color-green;
   border-radius: 0.25em;
   box-shadow: 0 0 0.25em rgba($color-green, 0.25);
   box-sizing: border-box;
 
-  .connect-wallet-wrapper,
-  .choose-button-wrapper {
+  button,
+  .choose-button-wrapper button {
+    margin-left: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: $color-dark;
+    color: white;
+    cursor: pointer;
     width: 100%;
-    margin: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    button {
-      margin-left: 10px;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      background-color: $color-dark;
-      color: white;
-      cursor: pointer;
-      width: 100%;
-      transition: background-color 0.4s ease, transform 0.4s ease;
-
-      &:active {
-        background-color: $color-green;
-        transform: scale(1.1);
-
-        &:hover {
-          background-color: $color-dark-green;
-        }
-      }
+    transition: background-color 0.4s ease, transform 0.4s ease;
+  
+    &:active {
+      background-color: $color-green;
+      transform: scale(1.1);
     }
+  
+    &:hover {
+      background-color: $color-dark-green;
+    }
+  }
 
-    .form-wrapper {
+  .form-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    padding: 20px;
+    border-radius: 8px;
+
+    form {
       display: flex;
       flex-direction: column;
-      align-items: center;
       width: 100%;
-      padding: 20px;
-      border-radius: 8px;
+      margin: 3rem 0 3rem 0;
 
-      form {
+      .form-control {
         display: flex;
         flex-direction: column;
         width: 100%;
-        margin: 3rem 0 3rem 0;
+        margin: 10px 10px;
+        background-color: $color-dark-green;
+        border-radius: 5px;
 
-        .form-control {
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-
-          label {
-            align-self: center;
-          }
-
-          input,
-          select {
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            width: 100%;
-            align-self: center;
-            margin-top: 10px;
-          }
-
-          .choose-time-wrapper {
-            border: 1px solid black;
-            cursor: pointer;
-
-            &:hover {
-              background-color: rgba($color-green, 0.25);
-            }
-          }
+        &:hover {
+          box-shadow: 1px 1px 2px 1px black;
         }
 
-        .bookingTime {
-          display: block;
-          margin: 10px 0;
-          padding: 10px;
-          border: none;
-          border-radius: 4px;
-          color: black;
+        label {
           width: 100%;
-          cursor: pointer;
+          font-size: x-large;
+          margin-bottom: 0;
+          color: $color-cream-white;
+          text-indent: 8px;
+          cursor: auto;
+        }
 
-          &:hover {
-            border: 1px solid black;
-          }
+        input,
+        select {
+          padding: 10px;
+          border-radius: 4px;
+          align-self: center;
+          margin: 5px;
+          width: calc(100% - 10px);
+          cursor:text;
+        }
 
-          &.selected {
-            background-color: red;
-            border: 1px solid black;
+        #booking-form-restaurantId{
+          cursor:pointer;
+        }
+
+        .choose-time-wrapper {
+          display: flex;
+          flex-direction: column;
+          cursor:pointer;
+          justify-content: space-between;
+
+
+          .bookingTime {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            cursor: pointer;
+            border: none;
+            width: auto;
+            background-color: $color-cream-white;
+            border: 1px solid transparent;
+            align-self: flex-end;
+    
+            &.selected {
+              margin-right: 6px;
+              background-color: black;
+              border: 1px solid white;
+              content: x;
+              color: white;
+            }
           }
         }
       }
     }
+  }
 
-    .show-booking-wrapper,
-    .loading-wrapper {
-      background-color: rgba($color-green, 0.25);
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      padding: 20px;
-      border-radius: 8px;
-      border: 1px solid black;
-    }
+  .show-booking-wrapper,
+  .loading-wrapper {
+    background-color: rgba($color-green, 0.25);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid black;
   }
 }

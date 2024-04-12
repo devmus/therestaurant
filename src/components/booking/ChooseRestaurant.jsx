@@ -6,7 +6,7 @@ export const ChooseRestaurant = ({handleEnterBooking, showBooking}) => {
     <>
     {!showBooking && 
     <div className="choose-button-wrapper">
-      <button onClick={handleEnterBooking}>Boka bord</button>
+      <button onClick={handleEnterBooking}>Boka a table</button>
     </div>
     }
     </>

@@ -14,7 +14,8 @@ export const Bookingform = ({
   handleSetBooking,
   restaurantList,
   displayBookingForm,
-  returnBooking,
+  setdisplayBookingConfirmation,
+  setLoadingScreen,
 }) => {
   const [bookings, setBookings] = useState([]);
   const [allBookings, setAllBookings] = useState([]);
@@ -27,6 +28,7 @@ export const Bookingform = ({
 
   useEffect(() => {
     const fetchBookings = async () => {
+      if (!readContract) return;
       const fetchedBookings = await fetchAllBookings(readContract);
       setAllBookings(fetchedBookings);
     };
@@ -81,8 +83,9 @@ export const Bookingform = ({
 
   const handleCreateBooking = async () => {
     try {
+      setLoadingScreen("true");
       await createBooking(booking, writeContract);
-      returnBooking();
+      setdisplayBookingConfirmation(booking);
     } catch (error) {
       console.error("Failed to create booking:", error);
     }
@@ -107,7 +110,7 @@ export const Bookingform = ({
                 defaultValue=""
               >
                 <option value="" disabled>
-                  Välj restaurang
+                  Choose restaurant
                 </option>
                 {restaurantList.map((restaurant) => (
                   <option
@@ -139,7 +142,7 @@ export const Bookingform = ({
                         className="choose-time-wrapper"
                         htmlFor="booking-form-time-1800"
                       >
-                        Book 18:00:
+                        Book 18:00
                         <input
                           type="radio"
                           id="booking-form-time-1800"
@@ -156,7 +159,7 @@ export const Bookingform = ({
                           }
                           disabled={tablesRemain1800 === 0}
                         />
-                        <span>{`${tablesRemain1800} tables remaining with 6 seats at 18:00`}</span>
+                        {`${tablesRemain1800} tables remaining with 6 seats at 18:00`}
                       </label>
                     </div>
                     <div className="form-control">
@@ -181,7 +184,7 @@ export const Bookingform = ({
                           }
                           disabled={tablesRemain2100 === 0}
                         />
-                        <span>{`${tablesRemain2100} tables remaining with 6 seats at 21:00`}</span>
+                        {`${tablesRemain2100} tables remaining with 6 seats at 21:00`}
                       </label>
                     </div>
                     {booking.time !== "" && (
@@ -229,4 +232,3 @@ export const Bookingform = ({
     </>
   );
 };
-

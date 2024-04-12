@@ -34,7 +34,7 @@ export const Navbar = () => {
         </div>
         <ul className={`nav-links ${isOpen ? "open" : ""}`}>
           <li>
-            <NavLink to={"/therestaurant/"}>
+            <NavLink to={"/"}>
               <img
                 src={logo}
                 alt="Logo"
@@ -44,22 +44,22 @@ export const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/therestaurant/"} onClick={toggleMenu}>
+            <NavLink to={"/"} onClick={toggleMenu}>
               Home
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/therestaurant/booking"} onClick={toggleMenu}>
+            <NavLink to={"/booking"} onClick={toggleMenu}>
               Booking
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/therestaurant/admin"} onClick={toggleMenu}>
+            <NavLink to={"/admin"} onClick={toggleMenu}>
               Admin
             </NavLink>
           </li>
           <li>
-            <NavLink to={"/therestaurant/contact"} onClick={toggleMenu}>
+            <NavLink to={"/contact"} onClick={toggleMenu}>
               Contact
             </NavLink>
           </li>
@@ -75,18 +75,20 @@ export const Navbar = () => {
               </label>
             </div>
           </li>
-          <li className="nav-extra">
-            <div className="nav-wallet-button">
-              <button
-                className="connect-wallet-button"
-                onClick={!isConnected ? connectWallet : disconnectWallet}
-              >
-                {!isConnected ? "Connect Wallet" : "Connected ✔"}
-              </button>
-              {/* <span>{walletAddress}</span> */}
-              <ChainSwitcher />
-            </div>
-          </li>
+          <li className="nav-extra nav-wallet-container">
+  <div className="nav-wallet-button">
+    <button
+      className="connect-wallet-button"
+      onClick={!isConnected ? connectWallet : disconnectWallet}
+    >
+      {!isConnected ? "Connect Wallet" : "Connected ✔"}
+    </button>
+    {/* <span>{walletAddress}</span> */}
+  </div>
+  <div>
+    <ChainSwitcher />
+  </div>
+</li>
         </ul>
       </nav>
     </>

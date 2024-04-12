@@ -31,9 +31,9 @@ export const ChainSwitcher = () => {
   };
 
   return (
-    <div>
+    <div className="chainswitcher">
       <select onChange={handleSelectChange}>
-        <option value="">Välj en kedja</option>
+        <option value="">Network</option>
         <option value="0xaa36a7">Sepolia</option>
         <option value="0x7A69">Local</option>
       </select>

@@ -16,21 +16,26 @@ export const ShowBookings = ({ restaurantId, all }) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [searchActive, setSearchActive] = useState(false);
   const [filterType, setFilterType] = useState("date");
+  const [editBookingId, setEditBookingId] = useState(null);
+  const [editBookingData, setEditBookingData] = useState({});
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     const fetchBookings = async () => {
+      if (!readContract) return;
       const fetchedBookings = await fetchAllBookings(readContract);
       setBookings(fetchedBookings);
     };
 
     fetchBookings();
-  }, [restaurantId, all, readContract]);
+  }, [restaurantId, all, readContract, bookings]);
 
   const handleFilterChange = (e) => {
     e.preventDefault();
     setSearchTerm(e.target.value);
-    if (e.target.value === "") {
+    if (e.target.value === "" || e.target.value === "Show All") {
       setSearchActive(false);
+      setFilteredBookings([]);
     }
   };
 
@@ -44,29 +49,38 @@ export const ShowBookings = ({ restaurantId, all }) => {
     setSearchActive(true);
   };
 
-  const handleEdit = async (bookingId) => {
-    const numberOfGuests = prompt("Enter the updated number of guests");
-    const name = prompt("Enter the updated name");
-    const date = prompt("Enter the updated date");
-    const time = prompt("Enter the updated time");
+  const handleEdit = (bookingId) => {
+    const booking = bookings.find((booking) => booking[0] === bookingId);
+    setEditBookingData({
+      numberOfGuests: booking[1],
+      name: booking[2],
+      date: booking[3],
+      time: booking[4],
+    });
+    setEditBookingId(bookingId);
+  };
+
+  const handleEditSubmit = async (e) => {
+    e.preventDefault();
+    const timeWithoutColon = editBookingData.time.replace(":", "");
     try {
       await editBooking(
-        bookingId,
-        numberOfGuests,
-        name,
-        date,
-        time,
+        editBookingId,
+        editBookingData.numberOfGuests,
+        editBookingData.name,
+        editBookingData.date,
+        timeWithoutColon,
         writeContract,
       );
+      window.alert("The booking has been edited.");
       await new Promise((resolve) => setTimeout(resolve, 5000));
       const fetchedBookings = await fetchAllBookings(
         readContract,
         restaurantId,
       );
-      setBookings(
-        fetchedBookings.filter((booking) => booking[0] !== bookingId),
-      );
-      window.alert("The booking has been edited.");
+      setBookings(fetchedBookings);
+      setEditBookingId(null);
+      setRefresh(!refresh);
     } catch (error) {
       console.error("Failed to edit booking:", error);
     }
@@ -100,9 +114,13 @@ export const ShowBookings = ({ restaurantId, all }) => {
       <br />
       <div>
         <select
-          onChange={(e) => setFilterType(e.target.value)}
+          onChange={(e) => {
+            setFilterType(e.target.value);
+            handleFilterChange(e);
+          }}
           value={filterType}
         >
+          <option value="Show All">Show All</option>
           <option value="date">Date</option>
           <option value="time">Time</option>
           <option value="name">Name</option>
@@ -139,16 +157,69 @@ export const ShowBookings = ({ restaurantId, all }) => {
         <button onClick={handleApplyFilter}>Filtrera</button>
       </div>
       <ul>
-        {bookingsToRender
-          .sort((a, b) => Number(a[5]) - Number(b[5]))
-          .map((booking) => (
-            <Bookings
-              key={booking[0]}
-              booking={booking}
-              handleEdit={handleEdit}
-              handleRemove={handleRemove}
-            />
-          ))}
+        <div>
+          {bookingsToRender
+            .filter((booking) => booking[2] !== "")
+            .sort((a, b) => Number(a[5]) - Number(b[5]))
+            .map((booking) =>
+              booking[0] === editBookingId ? (
+                <form key={booking[0]} onSubmit={handleEditSubmit}>
+                  <input
+                    type="number"
+                    min="1"
+                    max="6"
+                    value={editBookingData.numberOfGuests}
+                    onChange={(e) =>
+                      setEditBookingData({
+                        ...editBookingData,
+                        numberOfGuests: e.target.value,
+                      })
+                    }
+                  />
+                  <input
+                    type="text"
+                    value={editBookingData.name}
+                    onChange={(e) =>
+                      setEditBookingData({
+                        ...editBookingData,
+                        name: e.target.value,
+                      })
+                    }
+                  />
+                  <input
+                    type="date"
+                    value={editBookingData.date}
+                    onChange={(e) =>
+                      setEditBookingData({
+                        ...editBookingData,
+                        date: e.target.value,
+                      })
+                    }
+                  />
+                  <select
+                    value={editBookingData.time}
+                    onChange={(e) =>
+                      setEditBookingData({
+                        ...editBookingData,
+                        time: e.target.value.replace(":", ""),
+                      })
+                    }
+                  >
+                    <option value="1800">18:00</option>
+                    <option value="2100">21:00</option>
+                  </select>
+                  <button type="submit">Submit</button>
+                </form>
+              ) : (
+                <Bookings
+                  key={booking[0]}
+                  booking={booking}
+                  handleEdit={() => handleEdit(booking[0])}
+                  handleRemove={handleRemove}
+                />
+              ),
+            )}
+        </div>
       </ul>
     </div>
   );
@@ -159,3 +230,4 @@ ShowBookings.propTypes = {
   all: PropTypes.bool,
   readContract: PropTypes.object,
 };
+
