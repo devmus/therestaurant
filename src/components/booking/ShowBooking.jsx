@@ -4,7 +4,7 @@ export const ShowBooking = ({ displayBookingConfirmation, loadingScreen, restaur
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/thankyou");
+    navigate("/therestaurant/thankyou");
   };
 
   const findRestaurantName = (restaurantId) => {
