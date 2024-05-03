@@ -32,6 +32,6 @@ Blockchain based app for booking a table in various restaurants with a web3 wall
 
 ## Screenshots
 
-![Screenshot](therestaurant/src/content/img/screenshot.jpg)
+![Screenshot](src/content/img/screenshot.jpg)
 
-![Screenshot Mobile](therestaurant/src/content/img/screenshot-mobile.jpg)
+![Screenshot Mobile](src/content/img/screenshot-mobile.jpg)
